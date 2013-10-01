@@ -19,5 +19,10 @@ module Tricle
     def items_for_range(start_at, end_at)
       raise Tricle::AbstractMethodError.new
     end
+
+    def format(number)
+      # from http://stackoverflow.com/a/11466770/358804
+      number.round.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
+    end
   end
 end

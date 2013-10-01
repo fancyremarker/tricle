@@ -17,6 +17,10 @@ module Tricle
         self.metric.total
       end
 
+      def format(number)
+        self.metric.format(number)
+      end
+
       def days_ago(n)
         start_at = self.now.beginning_of_day.days_ago(n)
         end_at = start_at + 1.day

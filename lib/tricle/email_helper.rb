@@ -11,11 +11,6 @@ module Tricle
       date.strftime('%-m/%-d/%y')
     end
 
-    def number_with_delimiter(number)
-      # from http://stackoverflow.com/a/11466770/358804
-      number.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
-    end
-
     def percent_change(new_val, old_val)
       if old_val == 0
         new_val >= 0 ? '+' : '-'
@@ -25,10 +20,9 @@ module Tricle
       end
     end
 
-    def percent_change_cell(new_val, old_val)
+    def percent_change_cell(new_val, old_val, old_val_str)
       cls = (new_val >= old_val) ? 'positive' : 'negative'
       pct_str = percent_change(new_val, old_val)
-      old_val_str = number_with_delimiter(old_val.round)
       %[<td class="#{cls}"><div>#{pct_str}</div><div>#{old_val_str}</div></td>].html_safe
     end
 
